@@ -5,7 +5,7 @@ import SearchBar from './SearchBar'
 
 const Navbar = (props) => {
   const { nombre_logo,navbar_items,search_bar,show_dropdown,dropdown_list,dropdown_name} = props // propiedades => abreviado 
-  
+    // Brake hasta 21 - 35hs 
     //const NavbarLogoText = "Mercado Libre";
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">

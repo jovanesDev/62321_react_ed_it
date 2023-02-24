@@ -1,26 +1,15 @@
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
+import Counter from './components/Counter/Counter';
+import Formulario from './components/Formulario/Formulario';
+
+import Productos from './views/Productos';
 function App() {
-  const home_navbar_item = ["Home","Link","Disabled","Tomas"]
-  const dropdown_list = ["XBOX","PLAY_STATION","PC"]
+  
   return (
     <div className="App text-danger">
-      <Navbar 
-        navbar_items={home_navbar_item} 
-        nombre_logo={'Mercado Libre'}
-        search_bar={false}
-        show_dropdown={true}
-        dropdown_name={'Video Juegos'}
-        dropdown_list={dropdown_list}
-      />
+      <Formulario/>
     </div>
   );
 }
 
 export default App;
-
-// App 
- // Navbar 
-   // NavbarItem
-   // SearchBar 
-   // Dropdown
