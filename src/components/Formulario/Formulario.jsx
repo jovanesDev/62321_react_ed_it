@@ -1,69 +1,71 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from "react";
+import Input from "../../shared/Input";
 
 const Formulario = (props) => {
+  const {
+    initialState,
+    inputs,
+    formTitle,
+    onSubmit,
+    toggleEnviado,
+    handleSetText,
+  } = props;
 
-    const { condicional } = props
+  // ejeplo como viene los props
+  // props => {
+  // name:'fulano'
+  // value:'fulano'
+  // showForm : true,
+  // initalState : {email:'',password:'',repeatPass:''}
+  //}
 
-    const [form,setForm] = useState({
-        email:'',
-        password:''
-    })
+  // props.name
 
+  const [form, setForm] = useState(initialState);
 
-    const {email,password} = form;
+  const handleSubmit = (e) => {
+    onSubmit(e, form);
+    toggleEnviado();
+  };
 
-    const handleChange = (e) => {
-       const {value,name} = e.target;
-       setForm({
-        ...form,
-        [name]:value
-       })
-    }
+  useEffect(() => {
+    setForm(initialState);
+  }, [initialState]);
+  // validacion
+  // => LOGIN || SI
+  // => REGISTRO || NO
+  // => DATOS  || NO
 
-    const handleSubmit = (e) => {
-        // para no recargar la pagina
-        e.preventDefault()
-        console.log(form)
-        // restablezo 
-        setForm({
-            email:'',
-            password:''
-        })
-    }
-
-    // objeto 
-    let objeto = {
-        name:'Profe'
-    }
-    // objeto.name = 'otro dato'
-        // objeto['name'] = 'otro dato'
-    // let {name} = objeto
-    // name = 'otro dato'
-
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
 
   return (
     <div>
-        <form onSubmit={handleSubmit} style={{display:'flex',flexDirection:'column', width:'40%',margin:'40px auto'}}>
-            <h1>Formulario</h1>
-            <input 
-                onChange={handleChange} 
-                value={email} 
-                name='email' 
-                placeholder='usuario@gmail.com' 
-                type="email" 
-            />
-            <input 
-                onChange={handleChange} 
-                value={password} 
-                name='password' 
-                placeholder='*******' 
-                type="password"
-            />
-            <button type='submit'> Enviar</button>
-        </form>
-       { condicional && <div>Aca el condicional llego true </div>}
+      <input type="text" onChange={(e) => handleSetText(e.target.value)} />
+      <form onSubmit={handleSubmit}>
+        <h1>{formTitle || "Titulo"}</h1>
+        {/* Inputs */}
+        {inputs?.map(({ name, type, id, placeholder, required }) => (
+          <Input
+            name={name}
+            type={type}
+            key={id}
+            placeholder={placeholder}
+            required={required}
+            onChange={handleChange}
+          />
+        ))}
+        {/* <input type="email" />
+        <input type="password" /> */}
+        <button>Enviar</button>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default Formulario
+export default Formulario;

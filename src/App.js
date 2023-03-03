@@ -1,58 +1,46 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
-import Counter from './components/Counter/Counter';
+import { datosLogin, datosLoginInputs, datosRegistro, datosRegistroInputs } from './components/Formulario/config';
 import Formulario from './components/Formulario/Formulario';
 import Navbar from './components/Navbar/Navbar';
-
-import Productos from './views/Productos';
 function App() {
+
   const [showForms,setShowForms] = useState(false)
-  const [datos,setDatos] = useState({
-    nombre:'',
-    apellido:'',
-    materia:''
-  })
 
-  // Brake hasta 21:35
+  const [showLogin,setShowLogin] = useState(false)
 
-  useEffect(() => {
-    
-    if(showForms){
-      setDatos({
-        nombre:'Profe',
-        apellido:'Profe',
-        materia:'React.js'
-      })
-    }
-  
-    return () => {
-      setDatos({
-        nombre:'',
-        apellido:'',
-        materia:''
-      })
-    }
-  }, [showForms])
-  
+  const handleSubmit = (e,data) => {
+    e.preventDefault();
+    console.log(data)
+  }
 
-  //:10 => Formulario completo
+  // ################## Uplifting  ####################################
+
+  const [enviado, setEnviado ] = useState(false);
+  const [text, setText] = useState('')
+  const toggleEnviado = () => setEnviado(!enviado)
+  const handleSetText  = (text) => setText(text)
+
+  // ################## Uplifting  ####################################
+
+
+
   return (
     <div className="App text-danger">
+      <h1>{text || 'Aca va un texto que sera tipiado desde Form'}</h1>
       <Navbar navbar_items={["Item","Home","Link","Disabled","Tomas"]}/>
       <button onClick={() => setShowForms(!showForms)}>{ showForms ? 'Ocultar' : 'Mostrar'}</button>
-      {showForms &&
-      <>
-      <Formulario/>
-      <Formulario condicional={true}/>
-      </>
-      }
-      {showForms && (
-        <>
-          <h1>{datos.nombre}</h1>
-          <h1>{datos.apellido}</h1>
-          <h1>{datos.materia}</h1>
-        </>
-      )}
+      <Formulario 
+        onSubmit={handleSubmit} 
+        formTitle={ !showLogin ? 'Register' : 'Login'} 
+        initialState={!showLogin ? datosRegistro : datosLogin} 
+        inputs={!showLogin ? datosRegistroInputs : datosLoginInputs}
+        toggleEnviado={toggleEnviado}
+        handleSetText={handleSetText}
+      />
+      <button onClick={() => setShowLogin(!showLogin)}> 
+        {!showLogin ? 'Ir a Login' : 'Ir a Registro'}
+      </button>
     </div>
   );
 }
