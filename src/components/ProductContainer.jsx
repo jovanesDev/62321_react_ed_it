@@ -53,7 +53,8 @@ const ProductContainer = () => {
   return (
     <>
      {datos.map(({id,img,titulo,descripcion,comics}) => (
-      <Cart 
+      <Cart
+          id={id} 
           key={id} 
           img={img}
           title={titulo}

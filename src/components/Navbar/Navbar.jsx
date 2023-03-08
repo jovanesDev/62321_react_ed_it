@@ -16,8 +16,8 @@ const Navbar = (props) => {
       </button>
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          { navbar_items?.map((nombre,index) => (
-            <NavbarItem key={nombre} nombre_item={nombre}/> 
+          { navbar_items?.map(({nombre,path},index) => (
+            <NavbarItem key={nombre} nombre_item={nombre} path={path}/> 
           ))}
           {show_dropdown && <Dropdown dropdown_name={dropdown_name} list_arr={dropdown_list}/>}
         </ul>

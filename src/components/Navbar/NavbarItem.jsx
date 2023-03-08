@@ -1,10 +1,13 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const NavbarItem = (props) => {
-    const {nombre_item} = props
+    const {nombre_item,path} = props
+
+    const activeStyle = {color:'red'}
   return (
     <li className="nav-item">
-        <a className="nav-link">{nombre_item}</a>
+        <NavLink className={'nav-link'} style={({isActive}) => isActive ? activeStyle : null } to={path} >{nombre_item}</NavLink>
     </li>
   )
 }
