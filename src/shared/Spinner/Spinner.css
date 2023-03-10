@@ -1,0 +1,11 @@
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.spinner-border {
+
+    color: violet !important;
+}

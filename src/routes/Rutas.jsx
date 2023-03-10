@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
+import UrlGenerator from '../components/URLGenerator/UrlGenerator'
 import Contacto from '../pages/Contacto'
 import DetailPage from '../pages/DetailPage'
 import Home from '../pages/Home'
@@ -11,7 +12,7 @@ const Rutas = () => {
     <BrowserRouter>
         <Navbar navbar_items={[{nombre:'Home',path:'/'},{nombre:'Nosotros',path:'/nosotros'},{nombre:'Contacto',path:'/contacto'}]} />
       <Routes>
-          <Route path='/' element={<Home/>} />
+          <Route path='/' element={<UrlGenerator/>} />
           <Route path='/nosotros' element={<Nosotros/>} /> 
           <Route path='/contacto' element={<Contacto/>} />
           <Route path='/detail/:id' element={<DetailPage/>} />
