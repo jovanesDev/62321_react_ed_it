@@ -1,21 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { useContext } from "react";
 import { EcommerceContext } from "../context/EcommerceProvider";
+import useCounter from "../hooks/useCounter";
 
 const ItemCount = (props) => {
-  const { agregarAlCarrito } = useContext(EcommerceContext);
-  const { producto } = props;
-  const [count, setCount] = useState(1);
-
-  const handleSumar = () => {
-    setCount(count + 1);
-  };
-
-  const handleRestar = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
-  };
+  const { agregarAlCarrito, estaEnElCarrito } = useContext(EcommerceContext);
+  const { producto, sinBotonAgregar, cantidad } = props;
+  const { count, handleSumar, handleRestar, handleRedirect } =
+    useCounter(cantidad);
 
   return (
     <div>
@@ -28,12 +20,20 @@ const ItemCount = (props) => {
           +1
         </button>
       </div>
-      <button
-        className="btn btn-primary mx-auto my-4"
-        onClick={() => agregarAlCarrito({ ...producto, count })}
-      >
-        Agregar al Carrito
-      </button>
+      {!sinBotonAgregar && !estaEnElCarrito(producto.id) && (
+        <button
+          className="btn btn-primary mx-auto my-4"
+          onClick={() => agregarAlCarrito({ ...producto, count })}
+        >
+          Agregar al Carrito
+        </button>
+      )}
+
+      {estaEnElCarrito(producto.id) && (
+        <button onClick={handleRedirect} className="btn btn-success mx-auto my-4">
+          Terminar la compra
+        </button>
+      )}
     </div>
   );
 };
