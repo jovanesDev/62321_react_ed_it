@@ -1,0 +1,48 @@
+{
+  "productos": [
+    {
+      "nombre": "zapatilla",
+      "marca": "nike",
+      "modelo": "air jordan retro 4 ",
+      "precio": "11000",
+      "id": 1
+    },
+    {
+      "nombre": "zapatilla",
+      "marca": "adidas ",
+      "modelo": "bad bunny ",
+      "precio": "20000",
+      "id": 2
+    },
+    {
+      "nombre": "zapatilla",
+      "marca": "puma",
+      "modelo": "puma-x-122",
+      "precio": "12500",
+      "id": 3
+    },
+    {
+      "nombre": "campera",
+      "marca": "nike ",
+      "modelo": "PSG ",
+      "precio": "5000",
+      "id": 4
+    }
+  ],
+  "favoritos": [
+    {
+      "nombre": "zapatilla",
+      "modelo": "air jordan retro 4 ",
+      "precio": "11000",
+      "marca": "nike",
+      "id": 1
+    },
+    {
+      "nombre": "campera",
+      "modelo": "PSG ",
+      "precio": "5000",
+      "marca": "nike ",
+      "id": 4
+    }
+  ]
+}
